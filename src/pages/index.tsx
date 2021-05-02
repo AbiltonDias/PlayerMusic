@@ -1,5 +1,6 @@
 import { GetStaticProps } from 'next';
-import Image from 'next/image'
+import Image from 'next/image';
+import Link from 'next/link';
 import { format, parseISO } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
@@ -7,7 +8,7 @@ import { api } from '../services/api';
 import { convertDurationToTimeString } from '../utils/ConvertDurationToTimeString';
 import styles from './home.module.scss';
 
-type Episode = {
+type Music = {
   id: string;
   title: string;
   members: string;
@@ -15,38 +16,38 @@ type Episode = {
   publisheAt: string;
   duration: number;
   durationAsString: string;
-  description: string;
   url: string;
 }
 
 type HomeProps = {
-  latestEpisodes: Episode[];
-  allEpisodes: Episode[];
+  latestMusics: Music[];
+  allMusics: Music[];
 }
 
-export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
-
+export default function Home({ latestMusics, allMusics }: HomeProps) {
   return (
     <div className={styles.homepage}>
-      <section className={styles.latestEpisodes}>
+      <section className={styles.latestMusics}>
         <h2> Últimos lançamentos</h2>
         <ul>
-          {latestEpisodes.map(episode => {
+          {latestMusics.map(music => {
             return (
-              <li key={episode.id}>
+              <li key={music.id}>
                 <Image
                   width={192}
                   height={192}
-                  src={episode.thumbnail}
-                  alt={episode.title}
+                  src={music.thumbnail}
+                  alt={music.title}
                   objectFit='cover'
                 />
 
-                <div className={styles.episodeDetails}>
-                  <a href="">{episode.title}</a>
-                  <p>{episode.members}</p>
-                  <span>{episode.publisheAt}</span>
-                  <span>{episode.durationAsString}</span>
+                <div className={styles.musicDetails}>
+                  <Link href={`/favorites/${music.id}`} >
+                    <a>{music.title}</a>
+                  </Link>
+                  <p>{music.members}</p>
+                  <span>{music.publisheAt}</span>
+                  <span>{music.durationAsString}</span>
                 </div>
 
                 <button type='button'>
@@ -58,8 +59,53 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
           })}
         </ul>
       </section>
-      <section className={styles.allEpisodes}>
 
+      <section className={styles.allMusics}>
+        <h2>Todos episódios</h2>
+        <div className={styles.table}>
+          <table cellSpacing={0}>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Músicas</th>
+                <th>Artista</th>
+                <th>Data</th>
+                <th>Duração</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {allMusics.map(music => {
+                return (
+                  <tr key={music.id}>
+                    <td style={{ width: 72 }}>
+                      <Image
+                        width={120}
+                        height={120}
+                        src={music.thumbnail}
+                        alt={music.title}
+                        objectFit="cover"
+                      />
+                    </td>
+                    <td>
+                      <Link href={`/favorites/${music.id}`}>
+                        <a >{music.title}</a>
+                      </Link>
+                    </td>
+                    <td>{music.members}</td>
+                    <td style={{ width: 100 }}>{music.publisheAt}</td>
+                    <td>{music.durationAsString}</td>
+                    <td>
+                      <button type='button'>
+                        <img src="/play-green.svg" alt="Tocar música" />
+                      </button>
+                    </td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
       </section>
     </div>
   )
@@ -68,7 +114,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
 //Melhor aproveitamento em Produção
 export const getStaticProps: GetStaticProps = async () => {
 
-  const { data } = await api.get("episodes", {
+  const { data } = await api.get("musics", {
     params: {
       _limit: 12,
       _sort: 'published_at',
@@ -76,27 +122,26 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   });
 
-  const episodes = data.map(episode => {
+  const musics = data.map(music => {
     return {
-      id: episode.id,
-      title: episode.title,
-      thumbnail: episode.thumbnail,
-      members: episode.members,
-      publishedAt: format(parseISO(episode.published_at), 'd MMM yy', { locale: ptBR }),
-      duration: Number(episode.file.duration),
-      durationAsString: convertDurationToTimeString(Number(episode.file.duration)),
-      description: episode.description,
-      url: episode.file.url,
+      id: music.id,
+      title: music.title,
+      thumbnail: music.thumbnail,
+      members: music.members,
+      publishedAt: format(parseISO(music.published_at), 'd MMM yy', { locale: ptBR }),
+      duration: Number(music.file.duration),
+      durationAsString: convertDurationToTimeString(Number(music.file.duration)),
+      url: music.file.url,
     }
   })
 
-  const latestEpisodes = episodes.slice(0, 2);
-  const allEpisodes = episodes.slice(2, episodes.length);
+  const latestMusics = musics.slice(0, 2);
+  const allMusics = musics.slice(2, musics.length);
 
   return {
     props: {
-      latestEpisodes,
-      allEpisodes,
+      latestMusics,
+      allMusics,
     },
     revalidate: 60 * 60 * 8,
   }
@@ -105,7 +150,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
 //Usar modo dev
 // export async function getServerSideProps() {
-//   const response = await fetch("http://localhost:3333/episodes");
+//   const response = await fetch("http://localhost:3333/musics");
 //   const data = await response.json();
 
 //   return {
