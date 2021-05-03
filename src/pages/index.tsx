@@ -1,12 +1,17 @@
 import { GetStaticProps } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import Head from 'next/head';
 import { format, parseISO } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
 import { api } from '../services/api';
 import { convertDurationToTimeString } from '../utils/ConvertDurationToTimeString';
 import styles from './home.module.scss';
+import { useContext } from 'react';
+import { PlayerContext } from '../contexts/PlayerContext';
+import { useTheme } from '../contexts/ThemeContext';
+import { usePlayer, ButtonMediaPlayer } from '../contexts/PlayerContext';
 
 type Music = {
   id: string;
@@ -25,12 +30,33 @@ type HomeProps = {
 }
 
 export default function Home({ latestMusics, allMusics }: HomeProps) {
+  const { play } = useContext(PlayerContext);
+  const { playList, tooglePlayer, isPlayer } = usePlayer();
+  const { theme } = useTheme();
+  const musicList = [...latestMusics, ...allMusics];
+
   return (
-    <div className={styles.homepage}>
-      <section className={styles.latestMusics}>
+    <div className={`
+    ${styles.homepage}
+    ${theme === "light" ?
+        styles.light
+        : styles.dark
+      }`
+    }>
+      <Head>
+        <title>Home | Musics</title>
+      </Head>
+      <section className={`
+        ${styles.latestMusics}
+        ${theme === "light" ?
+          styles.light
+          : styles.dark
+        }`}>
+        {ButtonMediaPlayer("buttonMedia", tooglePlayer, isPlayer)}
+
         <h2> Últimos lançamentos</h2>
         <ul>
-          {latestMusics.map(music => {
+          {latestMusics.map((music, index) => {
             return (
               <li key={music.id}>
                 <Image
@@ -50,8 +76,8 @@ export default function Home({ latestMusics, allMusics }: HomeProps) {
                   <span>{music.durationAsString}</span>
                 </div>
 
-                <button type='button'>
-                  <img src="/play-green.svg" alt="Tocar" />
+                <button type='button' onClick={() => playList(musicList, index)}>
+                  <img src="/play-green.svg" alt="Tocar música" />
                 </button>
 
               </li>
@@ -60,7 +86,13 @@ export default function Home({ latestMusics, allMusics }: HomeProps) {
         </ul>
       </section>
 
-      <section className={styles.allMusics}>
+      <section className={`
+        ${styles.allMusics}
+        ${theme === "light" ?
+          styles.light
+          : styles.dark
+        }`}>
+
         <h2>Todos episódios</h2>
         <div className={styles.table}>
           <table cellSpacing={0}>
@@ -68,14 +100,14 @@ export default function Home({ latestMusics, allMusics }: HomeProps) {
               <tr>
                 <th></th>
                 <th>Músicas</th>
-                <th>Artista</th>
+                <th>Artistas</th>
                 <th>Data</th>
                 <th>Duração</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              {allMusics.map(music => {
+              {allMusics.map((music, index) => {
                 return (
                   <tr key={music.id}>
                     <td style={{ width: 72 }}>
@@ -96,7 +128,7 @@ export default function Home({ latestMusics, allMusics }: HomeProps) {
                     <td style={{ width: 100 }}>{music.publisheAt}</td>
                     <td>{music.durationAsString}</td>
                     <td>
-                      <button type='button'>
+                      <button type='button' onClick={() => playList(musicList, index + latestMusics.length)}>
                         <img src="/play-green.svg" alt="Tocar música" />
                       </button>
                     </td>

@@ -3,9 +3,12 @@ import ptBR from 'date-fns/locale/pt-BR';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import Head from 'next/head';
 import { api } from '../../services/api';
 import { convertDurationToTimeString } from '../../utils/ConvertDurationToTimeString';
 import styles from './favorite.module.scss';
+import { useTheme } from '../../contexts/ThemeContext';
+import { usePlayer, ButtonMediaPlayer } from '../../contexts/PlayerContext';
 
 type Music = {
     id: string;
@@ -24,33 +27,49 @@ type MusicProps = {
 }
 
 export default function Favorite({ music }: MusicProps) {
+    const { play, tooglePlayer, isPlayer } = usePlayer();
+    const { theme } = useTheme();
 
     return (
-        <div className={styles.favorite}>
-            <div className={styles.thumbnailContainer}>
-                <Link href='/'>
-                    <button type='button' >
-                        <img src="/arrow-left.svg" alt="Voltar" />
-                    </button>
-                </Link>
-                <Image
-                    width={700}
-                    height={160}
-                    src={music.thumbnail}
-                    objectFit='cover'
-                />
-                <button type='button'>
-                    <img src="/play.svg" alt="Tocar Música" />
-                </button>
-            </div>
-            <header>
-                <h1>{music.title}</h1>
-                <span>{music.members}</span>
-                <span>{music.publisheAt}</span>
-                <span>{music.durationAsString}</span>
-            </header>
+        <div className={`
+            ${styles.internal}
+            ${theme === "light" ?
+                styles.light
+                : styles.dark
+            }`}>
 
-            <div className={styles.description} dangerouslySetInnerHTML={{ __html: music.description }} />
+            <div className={styles.favorite}>
+                <Head>
+                    <title>{music.title} | Music </title>
+                </Head>
+
+                {ButtonMediaPlayer("buttonMedia interna", tooglePlayer, isPlayer)}
+
+                <div className={styles.thumbnailContainer}>
+                    <Link href='/'>
+                        <button type='button' >
+                            <img src="/arrow-left.svg" alt="Voltar" />
+                        </button>
+                    </Link>
+                    <Image
+                        width={700}
+                        height={160}
+                        src={music.thumbnail}
+                        objectFit='cover'
+                    />
+                    <button type='button'>
+                        <img src="/play.svg" alt="Tocar Música" />
+                    </button>
+                </div>
+                <header>
+                    <h1>{music.title}</h1>
+                    <span>{music.members}</span>
+                    <span>{music.publisheAt}</span>
+                    <span>{music.durationAsString}</span>
+                </header>
+
+                <div className={styles.description} dangerouslySetInnerHTML={{ __html: music.description }} />
+            </div>
         </div>
     )
 };

@@ -1,20 +1,26 @@
 import '../styles/global.scss';
 
-import { Header } from '../Components/Header'
-import { Player } from '../Components/Player'
+import { Header } from '../components/Header';
+import { Player } from '../components/Player';
 
 import styles from '../styles/app.module.scss';
+import { ThemeContextProvider } from '../contexts/ThemeContext';
+import { PlayerContextProvider } from '../contexts/PlayerContext';
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <div className={styles.wrapper}>
-      <main>
-        <Header />
-        <Component {...pageProps} />
-      </main>
-      <Player />
 
-    </div>
+  return (
+    <ThemeContextProvider>
+      <PlayerContextProvider>
+        <div className={styles.wrapper}>
+          <main>
+            <Header />
+            <Component {...pageProps} />
+          </main>
+          <Player />
+        </div>
+      </PlayerContextProvider>
+    </ThemeContextProvider>
   )
 }
 
