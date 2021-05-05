@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { format, parseISO } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { api } from '../services/api';
 import { convertDurationToTimeString } from '../utils/ConvertDurationToTimeString';
@@ -12,6 +13,7 @@ import { useContext } from 'react';
 import { PlayerContext } from '../contexts/PlayerContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { usePlayer, ButtonMediaPlayer } from '../contexts/PlayerContext';
+import {Homepage} from './styles';
 
 type Music = {
   id: string;
@@ -65,6 +67,7 @@ export default function Home({ latestMusics, allMusics }: HomeProps) {
         : styles.dark
       }`
     }>
+
       <Head>
         <title>Home | Musics</title>
       </Head>
@@ -80,29 +83,31 @@ export default function Home({ latestMusics, allMusics }: HomeProps) {
         <ul>
           {latestMusics.map((music, index) => {
             return (
-              <li key={music.id}>
-                <Image
-                  width={192}
-                  height={192}
-                  src={music.thumbnail}
-                  alt={music.title}
-                  objectFit='cover'
-                />
+              
+                <li key={music.id}>
+                  <Image
+                    width={192}
+                    height={192}
+                    src={music.thumbnail}
+                    alt={music.title}
+                    objectFit='cover'
+                  />
 
-                <div className={styles.musicDetails}>
-                  <Link href={`/favorites/${music.id}`} >
-                    <a>{music.title}</a>
-                  </Link>
-                  <p>{music.members}</p>
-                  <span>{music.publisheAt}</span>
-                  <span>{music.durationAsString}</span>
-                </div>
+                  <div className={styles.musicDetails}>
+                    <Link href={`/favorites/${music.id}`} >
+                      <a>{music.title}</a>
+                    </Link>
+                    <p>{music.members}</p>
+                    <span>{music.publisheAt}</span>
+                    <span>{music.durationAsString}</span>
+                  </div>
 
-                <button type='button' onClick={() => playList(musicList, index)}>
-                  <img src="/play-green.svg" alt="Tocar música" />
-                </button>
+                  <button type='button' onClick={() => playList(musicList, index)}>
+                    <img src="/play-green.svg" alt="Tocar música" />
+                  </button>
 
-              </li>
+                </li>
+              
             )
           })}
         </ul>
@@ -131,6 +136,12 @@ export default function Home({ latestMusics, allMusics }: HomeProps) {
             <tbody>
               {allMusics.map((music, index) => {
                 return (
+                  <InfiniteScroll
+                    dataLength={allMusics.length}
+                    next={music[index]}
+                    hasMore={true}
+                    loader={music[index-1] ? <h4>Loading...</h4> : ''}
+                  >
                   <tr key={music.id}>
                     <td style={{ width: 72 }}>
                       <Image
@@ -155,6 +166,7 @@ export default function Home({ latestMusics, allMusics }: HomeProps) {
                       </button>
                     </td>
                   </tr>
+                 </InfiniteScroll>
                 )
               })}
             </tbody>

@@ -129,6 +129,124 @@
         "type": "audio/x-m4a",
         "duration":142
       }
+    },
+    {
+      "id": "techno1",
+      "title": "Techno 2020 | HANDS UP New Years Bash Music Mix",
+      "members": "T. Schürger",
+      "published_at": "2021-01-15 13:00:00",
+      "thumbnail": "/techno.jpg",
+      "description": "<p>Time to celebrate our new year 2020! Welcome to our best of Techno Hands Up megamix. The New Years Bash 2020. Almost 6 hours of pure music for you! One megamix to rule them all. Just for you .</p>\n",
+      "file": {
+        "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+        "type": "audio/x-m4a",
+        "duration": 142
+      }
+    },
+    {
+      "id": "techno2",
+      "title": "Techno 2020 | HANDS UP New Years Bash Music Mix",
+      "members": "T. Schürger",
+      "published_at": "2021-01-08 13:00:00",
+      "thumbnail": "/techno.jpg",
+      "description": "<p>Time to celebrate our new year 2020! Welcome to our best of Techno Hands Up megamix. The New Years Bash 2020. Almost 6 hours of pure music for you! One megamix to rule them all. Just for you .</p>",
+      "file": {
+        "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        "type": "audio/x-m4a",
+        "duration":142
+      }
+    },
+    {
+      "id": "techno3",
+      "title": "Techno 2020 | HANDS UP New Years Bash Music Mix",
+      "members": "T. Schürger",
+      "published_at": "2020-12-18 14:00:00",
+      "thumbnail": "/techno.jpg",
+      "description": "<p>Time to celebrate our new year 2020! Welcome to our best of Techno Hands Up megamix. The New Years Bash 2020. Almost 6 hours of pure music for you! One megamix to rule them all. Just for you .</p>",
+      "file": {
+        "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+        "type": "audio/x-m4a",
+        "duration":142
+      }
+    },
+    {
+      "id": "techno4",
+      "title": "Techno 2020 | HANDS UP New Years Bash Music Mix",
+      "members": "T. Schürger",
+      "published_at": "2020-12-04 15:00:00",
+      "thumbnail": "/techno.jpg",
+      "description": "<p>Time to celebrate our new year 2020! Welcome to our best of Techno Hands Up megamix. The New Years Bash 2020. Almost 6 hours of pure music for you! One megamix to rule them all. Just for you .</p>",
+      "file": {
+        "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+        "type": "audio/x-m4a",
+        "duration":142
+      }
+    },
+    
+    {
+      "id": "techno4",
+      "title": "Techno 2020 | HANDS UP New Years Bash Music Mix",
+      "members": "T. Schürger",
+      "published_at": "2020-10-30 14:00:00",
+      "thumbnail": "/techno.jpg",
+      "description": "<p>Time to celebrate our new year 2020! Welcome to our best of Techno Hands Up megamix. The New Years Bash 2020. Almost 6 hours of pure music for you! One megamix to rule them all. Just for you .</p>",
+      "file": {
+        "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+        "type": "audio/x-m4a",
+        "duration":142
+      }
+    },
+    {
+      "id": "techno5",
+      "title": "Techno 2020 | HANDS UP New Years Bash Music Mix",
+      "members": "T. Schürger",
+      "published_at": "2020-10-23 14:00:00",
+      "thumbnail": "/techno.jpg",
+      "description": "<p>Time to celebrate our new year 2020! Welcome to our best of Techno Hands Up megamix. The New Years Bash 2020. Almost 6 hours of pure music for you! One megamix to rule them all. Just for you .</p>",
+      "file": {
+        "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
+        "type": "audio/x-m4a",
+        "duration":142
+      }
+    },
+    {
+      "id": "techno6",
+      "title": "Techno 2020 | HANDS UP New Years Bash Music Mix",
+      "members": "T. Schürger",
+      "published_at": "2020-10-16 13:00:00",
+      "thumbnail": "/techno.jpg",
+      "description": "<p>Time to celebrate our new year 2020! Welcome to our best of Techno Hands Up megamix. The New Years Bash 2020. Almost 6 hours of pure music for you! One megamix to rule them all. Just for you .</p>",
+      "file": {
+        "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
+        "type": "audio/x-m4a",
+        "duration":142
+      }
+    },
+    {
+      "id": "techno7",
+      "title": "Techno 2020 | HANDS UP New Years Bash Music Mix",
+      "members": "T. Schürger",
+      "published_at": "2020-05-04 14:49:35",
+      "thumbnail": "/techno.jpg",
+      "description": "<p>Time to celebrate our new year 2020! Welcome to our best of Techno Hands Up megamix. The New Years Bash 2020. Almost 6 hours of pure music for you! One megamix to rule them all. Just for you .</p>",
+      "file": {
+        "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
+        "type": "audio/x-m4a",
+        "duration":142
+      }
+    },
+    {
+      "id": "techno8",
+      "title": "Techno 2020 | HANDS UP New Years Bash Music Mix",
+      "members": "T. Schürger",
+      "published_at": "2020-04-09 20:00:00",
+      "thumbnail": "/techno.jpg",
+      "description": "<p>Time to celebrate our new year 2020! Welcome to our best of Techno Hands Up megamix. The New Years Bash 2020. Almost 6 hours of pure music for you! One megamix to rule them all. Just for you .</p>",
+      "file": {
+        "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3",
+        "type": "audio/x-m4a",
+        "duration":142
+      }
     }
   ]
 }
