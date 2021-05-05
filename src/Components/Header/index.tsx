@@ -22,7 +22,7 @@ export function Header() {
         }>
             <Link href="/">
                 <a>
-                    <img src="/logo.svg" alt="Podcastr" />
+                    <img src="/heatset.svg" alt="Podcastr" />
                 </a>
             </Link>
             <p>O melhor para você ouvir, sempre</p>

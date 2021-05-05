@@ -34,7 +34,29 @@ export default function Home({ latestMusics, allMusics }: HomeProps) {
   const { playList, tooglePlayer, isPlayer } = usePlayer();
   const { theme } = useTheme();
   const musicList = [...latestMusics, ...allMusics];
+  
+  // Aplicando Redux não finalizado
+  // const musics = useSelector(state => state);
+  // const dispatch = useDispatch();
+  // //const [musicList, setMusicList] = useState([]);
+  // const [currentMusicIndex, setCurrentMusicIndex] = useState(0);
+  // const [isPlaying, setIsPlaying] = useState(false);
+  // const [isLooping, setIsLooping] = useState(false);
+  // const [isShuffling, setIsShuffling] = useState(false);
+  // const [isPlayer, setIsPlayer] = useState(false);
 
+  // const play = useCallback((musicList:Music)=> {
+  //   dispatch(play(musicList) => {
+  //     setMusicList([music]);
+  //     setCurrentMusicIndex(0);
+  //     setIsPlaying(true);
+  //   })
+  // },[]);
+
+  // const playList = useCallback((musicList: Music[], index: number) =>{
+  //   dispatch
+  // }, [])
+  
   return (
     <div className={`
     ${styles.homepage}
@@ -143,7 +165,7 @@ export default function Home({ latestMusics, allMusics }: HomeProps) {
   )
 }
 
-//Melhor aproveitamento em Produção
+
 export const getStaticProps: GetStaticProps = async () => {
 
   const { data } = await api.get("musics", {
@@ -178,19 +200,6 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 60 * 60 * 8,
   }
 }
-
-
-//Usar modo dev
-// export async function getServerSideProps() {
-//   const response = await fetch("http://localhost:3333/musics");
-//   const data = await response.json();
-
-//   return {
-//     props: {
-//       episodes: data,
-//     }
-//   }
-// }
 
 
 

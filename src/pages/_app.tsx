@@ -1,7 +1,9 @@
 import '../styles/global.scss';
+//import { Provider } from 'react-redux';
+//import store from '../store';
 
-import { Header } from '../components/Header';
-import { Player } from '../components/Player';
+import { Header } from '../Components/Header';
+import { Player } from '../Components/Player';
 
 import styles from '../styles/app.module.scss';
 import { ThemeContextProvider } from '../contexts/ThemeContext';
@@ -10,6 +12,7 @@ import { PlayerContextProvider } from '../contexts/PlayerContext';
 function MyApp({ Component, pageProps }) {
 
   return (
+    // <Provider store={store}>
     <ThemeContextProvider>
       <PlayerContextProvider>
         <div className={styles.wrapper}>
@@ -21,6 +24,7 @@ function MyApp({ Component, pageProps }) {
         </div>
       </PlayerContextProvider>
     </ThemeContextProvider>
+    // </Provider>
   )
 }
 

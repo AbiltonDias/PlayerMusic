@@ -15,12 +15,13 @@ type PlayerContextData = {
   isPlaying: boolean;
   play: (music: Music) => void;
   togglePlay: () => void;
+  //tooglePlay: () => void;
   setPlayingState: (state: boolean) => void;
   isLooping: boolean;
   isShuffling: boolean;
   isPlayer: boolean;
   playList: (list: Music[], index: number) => void;
-  tooglePlay: () => void;
+  
   tooglePlayer: () => void;
   toogleLoop: () => void;
   toogleShuffle: () => void;
@@ -103,28 +104,28 @@ export function PlayerContextProvider({ children }: PlayerContextProviderProps) 
 
   return (
     <PlayerContext.Provider 
-        value= {
-        {
-    musicList,
-      currentMusicIndex,
-      play,
-      playNext,
-      playPrevious,
-      playList,
-      isPlaying,
-      isLooping,
-      isShuffling,
-      isPlayer,
-      tooglePlay,
-      toogleLoop,
-      toogleShuffle,
-      setPlayingState,
-      hasNext,
-      hasPrevious,
-      clearPlayerState,
-      tooglePlayer,
-        }
-}>
+      value= {
+          {
+        musicList,
+        currentMusicIndex,
+        play,
+        playNext,
+        playPrevious,
+        playList,
+        isPlaying,
+        isLooping,
+        isShuffling,
+        isPlayer,
+        tooglePlay,
+        toogleLoop,
+        toogleShuffle,
+        setPlayingState,
+        hasNext,
+        hasPrevious,
+        clearPlayerState,
+        tooglePlayer,
+          }
+      }>
   { children }
   < /PlayerContext.Provider>
     );

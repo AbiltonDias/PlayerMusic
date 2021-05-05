@@ -3,7 +3,7 @@
     width: 26.5rem;
     height: 100vh;
 
-    background: var(--purple-500);
+    background: var(--orange-500);
     color: var(--white);
 
     display: flex;
@@ -103,9 +103,9 @@
 .emptyPlayer {
     width: 100%;
     height: 20rem;
-    border: 1.5px dashed var(--purple-300);
+    border: 1.5px dashed var(--gray-200);
     border-radius: 1.5rem;
-    background: linear-gradient(143.8deg, rbga(145, 100, 250, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(143.8deg, rgba(246, 146, 30, 1) 0%, rgba(0, 0, 0, 0) 100%);
 
     padding: 4rem;
     text-align: center;
@@ -135,7 +135,7 @@
         .emptySlider {
             width: 100%;
             height: 4px;
-            background: var(--purple-300);
+            background: var(--gray-200);
             border-radius: 2px;
         }
     }
@@ -183,7 +183,7 @@
             width: 4rem;
             height: 4rem;
             border-radius: 1rem;
-            background: var(--purple-400);
+            background: var(--gray-200);
 
             &:hover:not(:disabled) {
                 filter: brightness(0.95);
