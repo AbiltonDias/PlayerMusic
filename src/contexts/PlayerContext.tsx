@@ -59,7 +59,7 @@ export function PlayerContextProvider({ children }: PlayerContextProviderProps) 
     setIsPlaying(true);
   }
 
-  function tooglePlay() {
+  function togglePlay() {
     setIsPlaying(!isPlaying);
   }
 
@@ -103,31 +103,34 @@ export function PlayerContextProvider({ children }: PlayerContextProviderProps) 
   }
 
   return (
-    <PlayerContext.Provider 
-      value= {
-          {
-        musicList,
-        currentMusicIndex,
-        play,
-        playNext,
-        playPrevious,
-        playList,
-        isPlaying,
-        isLooping,
-        isShuffling,
-        isPlayer,
-        tooglePlay,
-        toogleLoop,
-        toogleShuffle,
-        setPlayingState,
-        hasNext,
-        hasPrevious,
-        clearPlayerState,
-        tooglePlayer,
-          }
-      }>
+    <PlayerContext.Provider
+    value= {
+      {
+    musicList,
+    currentMusicIndex,
+    play,
+    playNext,
+    playPrevious,
+    playList,
+    isPlaying,
+    isLooping,
+    isShuffling,
+    isPlayer,
+    togglePlay,
+    toogleLoop,
+    toogleShuffle,
+    setPlayingState,
+    hasNext,
+    hasPrevious,
+    clearPlayerState,
+    tooglePlayer,
+    
+      }
+  }>
+      
   { children }
-  < /PlayerContext.Provider>
+    
+  </PlayerContext.Provider>
     );
 }
 

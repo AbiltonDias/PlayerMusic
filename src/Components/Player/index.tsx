@@ -3,9 +3,12 @@ import { useRef, useEffect, useState } from 'react';
 import { IoClose } from "react-icons/io5";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+
 import { usePlayer } from "../../contexts/PlayerContext";
-import styles from './styles.module.scss';
 import { convertDurationToTimeString } from '../../utils/ConvertDurationToTimeString';
+
+import styles from './styles.module.scss';
+
 export function Player() {
     const audioRef = useRef<HTMLAudioElement>(null);
     const [progress, setProgress] = useState(0);
@@ -16,7 +19,7 @@ export function Player() {
         isLooping,
         isShuffling,
         isPlayer,
-        tooglePlay,
+        togglePlay,
         tooglePlayer,
         toogleLoop,
         toogleShuffle,
@@ -126,7 +129,7 @@ export function Player() {
                         type="button"
                         className={styles.playButton}
                         disabled={!music}
-                        onClick={tooglePlay}
+                        onClick={togglePlay}
                     >
                         {isPlaying
                             ? <img src="/pause.svg" alt="Pausar" />
